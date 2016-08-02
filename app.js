@@ -1,7 +1,15 @@
 var express = require('express');
 var app = express();
 var port = process.env.PORT || 5000;
-var bookRouter = express.Router();
+var nav = [{
+    Link: '/Books',
+    Text: 'Books'
+}, {
+    Link: '/Authors',
+    Text: 'Authors'
+}];
+var bookRouter = require('./src/routes/bookRoutes.js')(nav);
+var adminRouter = require('./src/routes/adminRoutes.js')(nav);
 app.use(express.static('public'));
 // app.use(express.static('src/views'));
 app.set('views', './src/views');
@@ -14,25 +22,9 @@ app.set('views', './src/views');
 
 // change .hbs to jade, or ejs if you'd rather use jade or ejs and vice versa
 app.set('view engine', 'ejs');
-var books = [];
-bookRouter.route('/')
-    .get(function(req, res) {
-        res.render('books', {
-            title: 'Books',
-            nav: [{
-                Link: '/Books',
-                Text: 'Books'
-            }, {
-                Link: '/Authors',
-                Text: 'Authors'
-            }]
-        });
-    });
-bookRouter.route('/single')
-    .get(function(req, res) {
-        res.send('hello single books from bookRouter');
-    });
+
 app.use('/Books', bookRouter);
+app.use('/Admin', adminRouter);
 
 app.get('/', function(req, res) {
     res.render('index', {
