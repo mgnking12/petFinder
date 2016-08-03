@@ -8,7 +8,8 @@ var nav = [{
     Link: '/Cats',
     Text: 'Cats'
 }];
-var bookRouter = express.Router();
+var bookRouter = require('./src/routes/bookRoutes.js')(nav);
+var adminRouter = require('./src/routes/adminRoutes.js')(nav);
 app.use(express.static('public'));
 // app.use(express.static('src/views'));
 app.set('views', './src/views');
@@ -53,7 +54,6 @@ bookRouter.route('/single')
     .get(function(req, res) {
         res.send('hello single dogs from bookRouter');
     });
-
 
 app.get('/', function(req, res) {
     res.render('index', {
