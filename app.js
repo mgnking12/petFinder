@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 5000;
 var bookRouter = express.Router();
+var http = require('http');
 app.use(express.static('public'));
 // app.use(express.static('src/views'));
 app.set('views', './src/views');
@@ -34,6 +35,17 @@ bookRouter.route('/single')
     });
 app.use('/Books', bookRouter);
 
+app.get('/petFinder', function(req,res) {
+    http.get('http://api.petfinder.com/pet.getRandom?key=9b4604790e9c66428f6c9d46cbd08977&format=json&output=basic', function(data){
+        data.on("data", function(chunk) {
+            res.write(chunk);
+        });
+        data.on("end", function() {
+            res.end();
+        });
+    });
+}); //this is a proxy to use api
+
 app.get('/', function(req, res) {
     res.render('index', {
         title: 'hello from render',
@@ -52,3 +64,4 @@ app.get('/books', function(req, res) {
 app.listen(port, function(err) {
     console.log('running on port ' + port);
 });
+
