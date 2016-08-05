@@ -11,7 +11,7 @@ var router = function(nav) {
         'type': 'Cat'
     }, {
         'name': 'Max',
-        'age': '14n',
+        'age': '14',
         'type': 'Dog'
     }, {
         'name': 'Otto',
