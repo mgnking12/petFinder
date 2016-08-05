@@ -4,9 +4,8 @@ module.exports = function(sequelize, DataTypes) {
     type: DataTypes.STRING,
     breed: DataTypes.STRING,
     name: DataTypes.STRING,
-    age: DataTypes.STRING,
-    img_url: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.TEXT,
+    img_url: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
