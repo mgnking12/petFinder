@@ -60,8 +60,8 @@
         </div>
     </header>
 
-    <div id="masthead">
-        <div class="container">
+    <div id="masthead" class="img-responsive">
+        <div class="container fullPage">
             <div class="row">
                 <div class="col-md-7">
                     <h1><%= title %>
@@ -71,23 +71,22 @@
                 <div class="col-md-5">
                     <div class="well well-lg">
                         <div class="row">
-                            <div class="col-sm-12">
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
             <br>
-            <div class="col-md-2 col-sm-3 text-center">
-                Sign In
+            <div class="col-md-6 col-sm-6 text-center">
+              <form name="signUpForm" action="/auth/signUp" method="POST" role="form">
+                    <legend>Sign In</legend>
+
+                    <div class="form-group">
+                        <input name="userName" type="text" class="form-control" id="userName" placeholder="User Name">
+                        <input name="password" type="text" class="form-control" id="password" placeholder="Password">
+                    </div>
+
+
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
-            <div class="col-md-10 col-sm-9">
+            <div class="col-md-6 col-sm-6 text-center">
                 <form name="signUpForm" action="/auth/signUp" method="POST" role="form">
                     <legend>Sign Up</legend>
 
@@ -104,6 +103,13 @@
             </div>
             <br><br>
         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        
 
         <hr>
         <!--/stories-->
