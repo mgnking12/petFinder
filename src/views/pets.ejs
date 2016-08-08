@@ -86,26 +86,47 @@
                                     <div id="tinderslide">
                                         <ul>
                                             <% for (var i=0; i < pets.length; i++){%>
-                                                <li class="pane<%= i %> panel-body">
+                                                <li class="pane<%= i %>">
+                                                    <div class="card">
+                                                        <img class="card-img-top" src="<%=pets[i].img%>" alt="Card image cap">
+                                                        <div class="card-block">
+                                                            <h4 class="card-title"><%=pets[i].name%></h4>
+                                                            <p class="card-text">
+                                                                <%=pets[i].description%>
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-block">
+                                                            <div class="like"></div>
+                                                            <div class="dislike"></div>
+                                                            <a href="#" class="card-link btn btn-primary">More Info</a>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <!--
                                                     <div class="img"></div>
                                                     <div>
                                                         <%=pets[i].name%>
-                                                    </div>
+                                                         </div>
                                                     <div class="like"></div>
-                                                    <div class="dislike"></div>
+                                                    <div class="dislike"></div>-->
                                                 </li>
                                                 <%}%>
                                         </ul>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="#" class="dislike"><i></i></a>
+                                        <a href="#" class="like"><i></i></a>
                                     </div>
                                     <!-- end jtinder container -->
                                 </div>
                                 <!-- end padding container -->
 
                                 <!-- jTinder trigger by buttons  -->
-                                <div class="actions">
+                                <!--<div class="actions">
                                     <a href="#" class="dislike"><i></i></a>
                                     <a href="#" class="like"><i></i></a>
-                                </div>
+                                </div>-->
 
                             </div>
 
