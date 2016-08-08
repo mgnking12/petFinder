@@ -7,12 +7,12 @@
             // dislike callback
             onDislike: function(item) {
                 // set the status text
-                $('#status').html('Dislike image ' + (item.index() + 1));
+                $('#status').html('Not Interested');
             },
             // like callback
             onLike: function(item) {
                 // set the status text
-                $('#status').html('Like image ' + (item.index() + 1));
+                $('#status').html('Interested');
             },
             animationRevertSpeed: 200,
             animationSpeed: 400,
