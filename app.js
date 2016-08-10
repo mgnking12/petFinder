@@ -28,24 +28,7 @@ app.set('view engine', 'ejs');
 app.use('/Pets', petRouter);
 app.use('/Admin', adminRouter);
 
-app.get('/petFinder', function(req, res) {
 
-    var emptyVar = '';
-    http.get('http://api.petfinder.com/pet.getRandom?key=9b4604790e9c66428f6c9d46cbd08977&format=json&output=basic', function(data) {
-        data.setEncoding('utf8');
-        data.on("data", function(chunk) {
-            emptyVar += chunk;
-            console.log(chunk);
-        });
-
-        data.on("end", function(resdata) {
-            var json = JSON.parse(emptyVar);
-            // debugger;
-            console.log(json);
-            res.send(json);
-        });
-    });
-}); //this is a proxy to use api
 
 
 app.get('/', function(req, res) {
