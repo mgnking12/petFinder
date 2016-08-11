@@ -8,6 +8,35 @@ userRouter.post('/Login', passport.authenticate('local-login', {
     failureFlash : true // allow flash messages
 }));
 
+// userRouter.get('/Signup', function(req,res){
+// 	res.render('signup.ejs', {message: req.flash('signupMessage')});
+// });
+
+userRouter.post('/Signup', passport.authenticate('local-signup', {
+	sucessRedirect: '/profile',
+	failureRedirect: '/Signup',
+	failureFlash: true //allows for flash msg
+}));
+
+userRouter.get('/Profile', isLoggedIn, function(req,res){
+	res.render('profile.ejs',{
+		user: req.user
+	});
+});
+
+//logout
+userRouter.get('/Logout', function(req,res){
+	req.logout();
+	res.redirect('/');
+});
+
+//middleware to see if user logged in
+function isLoggedIn(req, res){
+	if (req.isAuthenticated())
+		return next();
+	res.redirect('/');
+}
+
 	// app.get('/Signup', function(req,res){
 	// 	res.render('signup.ejs', {message: req.flash('signupMessage')});
 	// });
