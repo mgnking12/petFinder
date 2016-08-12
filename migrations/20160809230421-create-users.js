@@ -1,29 +1,24 @@
-//need to create many to many relationship with the migrations files
-
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('pets', {
+    return queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      type: {
-        type: Sequelize.STRING
-      },
-      breed: {
-        type: Sequelize.STRING
-      },
       name: {
         type: Sequelize.STRING
       },
-      description: {
+      email: {
+        type: Sequelize.STRING
+      },
+      bio: {
         type: Sequelize.TEXT
       },
-      img_url: {
-        type: Sequelize.STRING
+      target_pet: {
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +31,7 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('pets');
+    return queryInterface.dropTable('users');
   }
 };
+
