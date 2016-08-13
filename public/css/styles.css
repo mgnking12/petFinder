@@ -27,17 +27,21 @@ h3,
 }
 
 .card {
-    border: 1px solid #ccc;
     border-radius: 1%;
     margin: 20px;
+    overflow: scroll;
 }
 
 .card-text {
-    margin: 20px;
+    margin: 5px;
+    font-size: 12px;
 }
 
 .card-link {
-    margin: 10px;
+    margin: 10px auto;
+    margin-left: -40px;
+    position: absolute;
+    bottom: 0px;
 }
 
 .card-img-top {

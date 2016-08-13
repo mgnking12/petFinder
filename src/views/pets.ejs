@@ -88,18 +88,19 @@
                                             <% for (var i=0; i < pets.length; i++){%>
                                                 <li class="pane<%= i %>">
                                                     <div class="card">
-                                                        <img class="card-img-top" src="<%=pets[i].img_url%>" alt="No Image Available">
+                                                    <% if (pets[i].img_url) { %>
+                                                        <img class="card-img-top img-responsive center-block" src="<%=pets[i].img_url%>" alt="No Image Available">
+                                                   <% } %>
+                                                   <% if (pets[i].img_url === null) { %>
+                                                   <img class="card-img-top img-responsive center-block" src="http://voteforverde.com/wp-content/uploads/2016/02/cat-dog-coloring-pages-gianfreda-coloring-pages-cats-and-dogs.png" alt="No Image Available"><p>Image coming soon.</p>
+                                                    <% } %>
                                                         <div class="card-block">
                                                             <h4 class="card-title"><%=pets[i].name%></h4>
-                                                            <p class="card-text">
-                                                                <%=pets[i].description%>
-                                                                    <a href="/pets/<%=pets[i].id%>" class="text-muted">Read More</a>
-                                                            </p>
                                                         </div>
                                                         <div class="card-block">
                                                             <div class="like"></div>
                                                             <div class="dislike"></div>
-                                                            <a href="#" class="card-link btn btn-primary">More Info</a>
+                                                            <a href="/pets/<%=pets[i].id%>" class="card-link btn btn-primary">More Info</a>
 
                                                         </div>
                                                     </div>

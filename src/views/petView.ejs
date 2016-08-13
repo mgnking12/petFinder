@@ -71,15 +71,16 @@
                         <div class="row">
                             <div class="col-sm-12">
                             <br>
-                            <div class="col-md-3 col-sm-6 text-center">
+                             <% if (pet.img_url) { %>
+                            <div class="col-md-4 col-sm-6 text-center">
                                 <a class="story-title" href="#"><img alt="No Image Available" src="<%=pet.img_url%>" style="" class="img-circle img-responsive"></a>
                             </div>
-                            <div class="col-md-9 col-sm-6">
+                            <% } %>
+                            <div class="col-md-8 col-sm-6">
                                 <h3><%=pet.name%></h3>
-                                <div class="row">
-                                    <div class="col-xs-6">
                                         <h4><span class="label label-default"><%=pet.age%></span></h4>
                                         <%=pet.type%>
+                                        <p><%=pet.breed%></p>
                                         <h4>   
                   </h4></div>
                                     <div class="col-xs-6"></div>
