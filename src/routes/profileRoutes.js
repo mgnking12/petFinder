@@ -14,7 +14,7 @@ var router = function(nav) {
         'type': 'Dog',
         'breed': 'Rottweiler',
         'img_url': 'http://photos.petfinder.com/photos/pets/35602515/1/?bust=1467931593&width=500&-x.jpg',
-        'description': 'Bacon ipsum dolor amet filet mignon turducken sirloin pork prosciutto, porchetta frankfurter pork belly pig ball tip drumstick.'
+        'description': ''
     }, {
         'name': 'LOUIE',
         'type': 'Cat',
