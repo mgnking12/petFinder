@@ -1,35 +1,123 @@
 var express = require('express');
 var userRouter = express.Router();
+var models = require('../../models');
 
 module.exports = function(app, passport) {
-    console.log("im now set")
-    app.post('/Login', passport.authenticate('local-login', {
-        successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/login', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
+    app.post('/login',
+        passport.authenticate('local-login', {
+            successRedirect: '/Profile', // redirect to the secure profile section
+            failureRedirect: '/login', // redirect back to the signup page if there is an error
+            failureFlash: true // allow flash messages
+        }));
+
+    /*app.get('/login', function(req, res){
+		// req.login(user, function(err) {
+		//   if (err) { return next(err); }
+		//   return res.redirect('/users/' + req.user.username);
+		// });
+        res.render('profile',{
+            title: 'Profile',
+            nav: [{
+                    Link: '/Pets',
+                    Text: 'Pets'
+                }, {
+                    Link: '/Profile',
+                    Text: 'Profile'
+                }]
+        }, {message: req.flash('loginMessage')}, function (error, html) {
+                    if (error) console.log(error);
+                    res.send(html);
+            });
+    });*/
+
+    app.get('/login', function(req, res) {
+        res.redirect('/Profile');
+        console.log('Test');
+        res.render('profile', {
+                title: 'Profile',
+                nav: [{
+                    Link: '/Pets',
+                    Text: 'Pets'
+                }, {
+                    Link: '/Profile',
+                    Text: 'Profile'
+                }]
+            }
+            //{message: 'Message Goes here'}
+        );
+    });
 
     // app.get('/Signup', function(req,res){
     // 	res.render('signup.ejs', {message: req.flash('signupMessage')});
     // });
 
-    app.post('/signup', passport.authenticate('local-signup', {
-        sucessRedirect: '/Profile',
-        failureRedirect: '/',
-        failureFlash: true //allows for flash msg
-    }));
+    //what is 'local-signup'?
+    /*app.post('/signup', passport.authenticate('local-signup', {
+    		sucessRedirect: '/Profile',
+    		failureRedirect: '/',
+    		failureFlash: true //allows for flash msg
+    }));*/
 
-    app.route('/Profile')
-        .post(isLoggedIn, function(req, res) {
-            res.render('profile.ejs', {
-                user: req.user
-            });
+    app.get('/signup', function(req, res) {
+        res.render('index', {
+            title: 'Profile',
+            nav: [{
+                Link: '/Pets',
+                Text: 'Pets'
+            }, {
+                Link: '/Profile',
+                Text: 'Profile'
+            }]
         });
+    })
+
+    app.post('/signup', function(req, res) {
+        res.redirect('/Profile');
+    });
+
+    app.get('/Pets', function(req, res) {
+        models.pets.findAll({
+                limit: 20,
+                img_url: {
+                    $ne: null
+                }
+            })
+            .then(function(pets) {
+                res.render('pets', {
+                    title: 'Pets',
+                    nav: [{
+                        Link: '/Pets',
+                        Text: 'Pets'
+                    }, {
+                        Link: '/Profile',
+                        Text: 'Profile'
+                    }],
+                    pets: pets
+                });
+            });
+
+    });
+
+    /*app.route('/Profile')
+    	.get(isLoggedIn, function(req,res){
+    		// req.login(results.ops[0], function())
+    		res.render('profile',{
+    			user: req.user
+    	});
+    });*/
 
     //logout
     app.get('/Logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    app.post('/decision', function(req, res) {
+        models.usersPets.create({
+            userId: 1,
+            petId: req.body.petId,
+            swipe_direction: req.body.swipe_direction
+        });
     });
 
     //middleware to see if user logged in
@@ -40,7 +128,6 @@ module.exports = function(app, passport) {
     }
 
 }
-
 
 // app.get('/Signup', function(req,res){
 // 	res.render('signup.ejs', {message: req.flash('signupMessage')});
